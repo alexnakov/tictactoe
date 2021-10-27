@@ -80,3 +80,23 @@ main {
   transform: rotate(-45deg);
 }
 
+.cell.circle::before, .cell.circle::after {
+  background-color: blue;
+  position: absolute;
+  width: 135px;
+  height: 135px;
+  content: '';
+  border-radius: 50%;
+}
+
+.cell.circle::before {
+  width: 135px;
+  height: 135px;
+  background-color: black;
+}
+
+.cell.circle::after {
+  width: 105px;
+  height: 105px;
+  background-color: white;
+}
