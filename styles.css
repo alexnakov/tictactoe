@@ -42,6 +42,7 @@ main {
   justify-content: center;
   align-items: center;
   position: relative;
+  cursor: pointer;
 }
 
 .cell:nth-child(1),
@@ -64,7 +65,9 @@ main {
   border-right: none;
 }
 
-.cell.x::before, .cell.x::after {
+.cell.x::before, .cell.x::after,
+.grid.x .cell:not(.x):not(.circle):hover::before,
+.grid.x .cell:not(.x):not(.circle):hover::after {
   background-color: blue;
   position: absolute;
   width: 15px;
@@ -72,11 +75,13 @@ main {
   content: '';
 }
 
-.cell.x::before {
+.cell.x::before,
+.grid.x .cell:hover::before {
   transform: rotate(45deg);
 }
 
-.cell.x::after {
+.cell.x::after,
+.grid.x .cell:hover::after {
   transform: rotate(-45deg);
 }
 
@@ -99,4 +104,8 @@ main {
   width: 105px;
   height: 105px;
   background-color: white;
+}
+
+.cell.x, .cell.circle {
+  cursor: not-allowed;
 }
