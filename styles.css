@@ -1,0 +1,82 @@
+*, *::after, *::before {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  height: 100vh;
+}
+
+h1 {
+  text-align: center;
+}
+
+main {
+  display: grid;
+  justify-content: center;
+}
+
+.scores {
+  display: flex;
+  justify-content: space-between;
+  font-size: 40px;
+  border: 1px solid black;
+  width: 450px;
+  margin-bottom: 2rem;
+}
+
+.grid {
+  display: grid;
+  justify-content: center;
+  justify-items: center;
+  align-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.cell {
+  border: 1px solid red;
+  width: 150px;
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.cell:nth-child(1),
+.cell:nth-child(2),
+.cell:nth-child(3) {
+  border-top: none;
+}
+
+.cell:nth-child(7),
+.cell:nth-child(8),
+.cell:nth-child(9) {
+  border-bottom: none;
+}
+
+.cell:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.cell:nth-child(3n + 3) {
+  border-right: none;
+}
+
+.cell.x::before, .cell.x::after {
+  background-color: blue;
+  position: absolute;
+  width: 15px;
+  height: 135px;
+  content: '';
+}
+
+.cell.x::before {
+  transform: rotate(45deg);
+}
+
+.cell.x::after {
+  transform: rotate(-45deg);
+}
+
