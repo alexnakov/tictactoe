@@ -2,6 +2,7 @@
   box-sizing: border-box;
 }
 
+/* #region  main */
 body {
   margin: 0;
   height: 100vh;
@@ -44,7 +45,9 @@ main {
   position: relative;
   cursor: pointer;
 }
+/* #endregion */
 
+/* #region RemoveBorders */
 .cell:nth-child(1),
 .cell:nth-child(2),
 .cell:nth-child(3) {
@@ -64,15 +67,11 @@ main {
 .cell:nth-child(3n + 3) {
   border-right: none;
 }
+/* #endregion*/
 
-.cell.x::before, .cell.x::after,
-.grid.x .cell:not(.x):not(.circle):hover::before,
-.grid.x .cell:not(.x):not(.circle):hover::after {
+/* #region  X and O set up */
+.cell.x::before, .cell.x::after {
   background-color: blue;
-  position: absolute;
-  width: 15px;
-  height: 135px;
-  content: '';
 }
 
 .cell.x::before,
@@ -85,25 +84,61 @@ main {
   transform: rotate(-45deg);
 }
 
-.cell.circle::before, .cell.circle::after {
-  background-color: blue;
-  position: absolute;
-  width: 135px;
-  height: 135px;
-  content: '';
-  border-radius: 50%;
-}
-
 .cell.circle::before {
   width: 135px;
   height: 135px;
   background-color: black;
+  border-radius: 50%;
+  position: absolute;
+  content: '';
 }
 
 .cell.circle::after {
   width: 105px;
   height: 105px;
   background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  content: '';
+}
+/* #endregion */
+
+.grid.x .cell:not(.x):not(.circle):hover::before,
+.grid.x .cell:not(.x):not(.circle):hover::after {
+  background-color: grey;
+}
+
+
+.cell.x::before, .cell.x::after,
+.grid.x .cell:not(.x):not(.circle):hover::before,
+.grid.x .cell:not(.x):not(.circle):hover::after {
+  position: absolute;
+  width: 15px;
+  height: 135px;
+  content: '';
+}
+
+.grid.circle .cell:not(.x):not(.circle):hover::before,
+.grid.circle .cell:not(.x):not(.circle):hover::after {
+  background-color: grey;
+}
+
+.grid.circle .cell:not(.x):not(.circle):hover::before {
+  width: 135px;
+  height: 135px;
+  background-color: grey;
+  border-radius: 50%;
+  position: absolute;
+  content: '';
+}
+
+.grid.circle .cell:not(.x):not(.circle):hover::after {
+  width: 105px;
+  height: 105px;
+  background-color: white;
+  border-radius: 50%;
+  position: absolute;
+  content: '';
 }
 
 .cell.x, .cell.circle {
