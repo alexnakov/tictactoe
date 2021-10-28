@@ -4,9 +4,16 @@ let circleTurn = true;
 const cellElements = document.querySelectorAll('[data-cell]')
 const grid = document.getElementsByClassName('grid')[0]
 
-cellElements.forEach(cell => {
-  cell.addEventListener('click', handleClick, {once: true})
-})
+startGame()
+
+function startGame() {
+  cellElements.forEach(cell => {
+    cell.addEventListener('click', handleClick, {once: true})
+  })
+
+  MarkHover()
+}
+
 
 function handleClick(e) {
   const cell = e.target
