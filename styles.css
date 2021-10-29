@@ -18,7 +18,7 @@ main {
 }
 
 .scores {
-  display: flex;
+  display: none;
   justify-content: space-between;
   font-size: 40px;
   border: 1px solid black;

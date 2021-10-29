@@ -5,6 +5,7 @@ const cellElements = document.querySelectorAll('[data-cell]')
 const grid = document.getElementsByClassName('grid')[0]
 const winningTextElement = document.querySelector('[data-winning-meesage-text]')
 const endGameDisplay = document.getElementsByClassName('winning-message')[0]
+const restartButton = document.getElementById('restratButton')
 const WINNING_COMBINATION = [
   [0,1,2],
   [3,4,5],
@@ -17,9 +18,15 @@ const WINNING_COMBINATION = [
 ]
 
 startGame()
+restartButton.addEventListener('click', startGame)
 
 function startGame() {
-  cellElements.forEach(cell => {   
+  circleTurn = !circleTurn
+  endGameDisplay.classList.remove('show')
+  cellElements.forEach(cell => {
+    cell.classList.remove(X_CLASS)
+    cell.classList.remove(CIRCLE_CLASS)   
+    cell.removeEventListener('click', handleClick)
     cell.addEventListener('click', handleClick, {once: true})
   })
   MarkHover()
@@ -32,6 +39,7 @@ function handleClick(e) {
   if (checkWin(currentMark)) {
     endGame(false)
   } else if (isDraw()) {
+    console.log('d')
     endGame(true)
   } else {
     swapTurn()
@@ -42,7 +50,7 @@ function handleClick(e) {
 function isDraw() {
   return [...cellElements].every(cell => {
     return cell.classList.contains(X_CLASS) ||
-    cell.classList.contains(X_CLASS)
+    cell.classList.contains(CIRCLE_CLASS)
   })
 }
 
