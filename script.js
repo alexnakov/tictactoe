@@ -3,7 +3,8 @@ const X_CLASS = 'x'
 let circleTurn = true;
 const cellElements = document.querySelectorAll('[data-cell]')
 const grid = document.getElementsByClassName('grid')[0]
-const winningTextElement = document.querySelector('data-winning-meesage-text')
+const winningTextElement = document.querySelector('[data-winning-meesage-text]')
+const endGameDisplay = document.getElementsByClassName('winning-message')[0]
 const WINNING_COMBINATION = [
   [0,1,2],
   [3,4,5],
@@ -18,22 +19,40 @@ const WINNING_COMBINATION = [
 startGame()
 
 function startGame() {
-  cellElements.forEach(cell => {
+  cellElements.forEach(cell => {   
     cell.addEventListener('click', handleClick, {once: true})
   })
   MarkHover()
 }
-
 
 function handleClick(e) {
   const cell = e.target
   const currentMark = circleTurn ? CIRCLE_CLASS : X_CLASS
   placeMark(cell, currentMark)
   if (checkWin(currentMark)) {
-    console.log('w')
-  } else { console.log('n') }
-  swapTurn()
-  MarkHover()
+    endGame(false)
+  } else if (isDraw()) {
+    endGame(true)
+  } else {
+    swapTurn()
+    MarkHover()
+  }
+}
+
+function isDraw() {
+  return [...cellElements].every(cell => {
+    return cell.classList.contains(X_CLASS) ||
+    cell.classList.contains(X_CLASS)
+  })
+}
+
+function endGame(draw) {
+  if (draw) {
+    winningTextElement.innerHTML = `Draw`
+  } else {
+    winningTextElement.innerHTML = `${circleTurn ? "O's" : "X's"}`
+  }
+  endGameDisplay.classList.add('show')
 }
 
 function placeMark(cell, currentMark) {
